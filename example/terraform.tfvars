@@ -10,13 +10,13 @@
 
     ####RDSEndPointVariable######
     rds_service_name = "com.amazonaws.us-west-2.rds"
-    rds_endpoint_type = "Gateway"
+    rds_endpoint_type = "Interface"
     rds_endpoint_name = "rds-dev"
 
 
     ####NLBEndPointVariable######
     nlb_service_name = "com.amazonaws.us-west-2.elasticloadbalancing"
-    nlb_endpoint_type = "Gateway"
+    nlb_endpoint_type = "Interface"
     nlb_endpoint_name = "nlb-dev"
     
     
