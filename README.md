@@ -1,20 +1,18 @@
-# Composite terraform module to create VPC endpoints and security groups
+# terraform module to create VPC endpoints and security groups
 Terraform module to create VPC endpoints and security groups.
 
 ## Goal
-This terraform module creates VPC endpoints (interface and gateway type endpoints) and security groups usinf the following terraform modules.
-1. [AWS interface VPC endpoint](https://gitlab.apps.ge-healthcare.net/pcs-digital-operations/sre/temp-workspace/terraform-modules/aws-interface-vpc-endpoint)
-2. [AWS gateway VPC endpoint](https://gitlab.apps.ge-healthcare.net/pcs-digital-operations/sre/temp-workspace/terraform-modules/aws-gateway-vpc-endpoint)
-3. [AWS security group](https://gitlab.apps.ge-healthcare.net/pcs-digital-operations/sre/temp-workspace/terraform-modules/aws-security-group)
+This terraform module creates VPC endpoints (interface and gateway type endpoints) and security groups.
 
 ## Dependencies
 Please make sure that the following AWS resources are created before executing this module.
 - VPC
 - Subnet
+- RouteTables
 
 ## Considerations
 ### 1. Naming conventions
-The naming conventions mentioned in this [design document](https://gehealthcare.ent.box.com/file/1600220869927?s=q4oeoc42nhq7uwami3w0x616rn7hb9ea) are followed in this composite module.
+
 
 ## Requirements
 
@@ -31,12 +29,12 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_name_gateway_ep"></a> [name\_gateway\_ep](#module\_name\_gateway\_ep) | git@gitlab.apps.ge-healthcare.net:pcs-digital-operations/sre/temp-workspace/terraform-modules/naming-tag.git | feature/US106973 |
-| <a name="module_name_interface_ep"></a> [name\_interface\_ep](#module\_name\_interface\_ep) | git@gitlab.apps.ge-healthcare.net:pcs-digital-operations/sre/temp-workspace/terraform-modules/naming-tag.git | feature/US106973 |
-| <a name="module_name_security_group"></a> [name\_security\_group](#module\_name\_security\_group) | git@gitlab.apps.ge-healthcare.net:pcs-digital-operations/sre/temp-workspace/terraform-modules/naming-tag.git | feature/US106973 |
-| <a name="module_security_group"></a> [security\_group](#module\_security\_group) | git@gitlab.apps.ge-healthcare.net:pcs-digital-operations/sre/temp-workspace/terraform-modules/aws-security-group.git | tag-name-change |
-| <a name="module_vpc_gateway_endpoint"></a> [vpc\_gateway\_endpoint](#module\_vpc\_gateway\_endpoint) | git@gitlab.apps.ge-healthcare.net:pcs-digital-operations/sre/temp-workspace/terraform-modules/aws-gateway-vpc-endpoint.git | tag-name-change |
-| <a name="module_vpc_interface_endpoint"></a> [vpc\_interface\_endpoint](#module\_vpc\_interface\_endpoint) | git@gitlab.apps.ge-healthcare.net:pcs-digital-operations/sre/temp-workspace/terraform-modules/aws-interface-vpc-endpoint.git | tag-name-change |
+| <a name="module_name_gateway_ep"></a> [name\_gateway\_ep](#module\_name\_gateway\_ep) | google.com/naming-tag.git | feature/US106973 |
+| <a name="module_name_interface_ep"></a> [name\_interface\_ep](#module\_name\_interface\_ep) | google.com/naming-tag.git | feature/US106973 |
+| <a name="module_name_security_group"></a> [name\_security\_group](#module\_name\_security\_group) | google.com/naming-tag.git | feature/US106973 |
+| <a name="module_security_group"></a> [security\_group](#module\_security\_group) | google.com/aws-security-group.git | tag-name-change |
+| <a name="module_vpc_gateway_endpoint"></a> [vpc\_gateway\_endpoint](#module\_vpc\_gateway\_endpoint) | google.com/aws-gateway-vpc-endpoint.git | tag-name-change |
+| <a name="module_vpc_interface_endpoint"></a> [vpc\_interface\_endpoint](#module\_vpc\_interface\_endpoint) | google.com/aws-interface-vpc-endpoint.git | tag-name-change |
 
 ## Resources
 
