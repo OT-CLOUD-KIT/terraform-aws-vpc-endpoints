@@ -44,8 +44,8 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_app"></a> [app](#input\_app) | Name of the application, For ex: network, shared, ddp etc. | `string` | n/a | yes |
-| <a name="input_bu"></a> [bu](#input\_bu) | Name of the business unit, For ex: bu which are supported by DDP are: pcs, ultrasound etc. | `string` | n/a | yes |
+| <a name="input_app"></a> [app](#input\_app) | Name of the application, For ex: network, shared, ot etc. | `string` | n/a | yes |
+| <a name="input_bu"></a> [bu](#input\_bu) | Name of the business unit, For ex: bu which are supported by ot are: pcs, ultrasound etc. | `string` | n/a | yes |
 | <a name="input_env"></a> [env](#input\_env) | Name of the environment example: for development env it should be 'd', prod env should be 'p', testing env should be 'q' and staging env should be's'. | `string` | n/a | yes |
 | <a name="input_sg_egress_variables"></a> [sg\_egress\_variables](#input\_sg\_egress\_variables) | List of egress rules for the security group | <pre>list(object({<br>  cidr_blocks = optional(list(string))<br>    description = optional(string)<br>    from_port   = number<br>    to_port     = number<br>    protocol    = string<br>  }))</pre> | <pre>[<br>  {<br>    "cidr_blocks": [],<br>    "description": null,<br>    "from_port": 0,<br>    "protocol": "-1",<br>    "to_port": 0<br>  }<br>]</pre> | no |     
 | <a name="input_sg_ingress_variables"></a> [sg\_ingress\_variables](#input\_sg\_ingress\_variables) | List of ingress rules for the security group | <pre>list(object({<br>    cidr_blocks = optional(list(string))<br>    description = optional(string)<br>    from_port   = number<br>    to_port     = number<br>    protocol    = string<br>  }))</pre> | <pre>[<br>  {<br>    "cidr_blocks": [],<br>    "description": null,<br>    "from_port": 0,<br>    "protocol": "-1",<br>    "to_port": 0<br>  }<br>]</pre> | no | 
@@ -100,8 +100,8 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_app"></a> [app](#input\_app) | Name of the application, For ex: network, shared, ddp etc. | `string` | n/a | yes |
-| <a name="input_bu"></a> [bu](#input\_bu) | Name of the business unit, For ex: bu which are supported by DDP are: pcs, ultrasound etc. | `string` | n/a | yes |
+| <a name="input_app"></a> [app](#input\_app) | Name of the application, For ex: network, shared, ot etc. | `string` | n/a | yes |
+| <a name="input_bu"></a> [bu](#input\_bu) | Name of the business unit, For ex: bu which are supported by ot are: pcs, ultrasound etc. | `string` | n/a | yes |
 | <a name="input_env"></a> [env](#input\_env) | Name of the environment example: for development env it should be 'd', prod env should be 'p', testing env should be 'q' and staging env should be's'. | `string` | n/a | yes |
 | <a name="input_sg_egress_variables"></a> [sg\_egress\_variables](#input\_sg\_egress\_variables) | List of egress rules for the security group | <pre>list(object({<br>    cidr_blocks = optional(list(string))<br>    description = optional(string)<br>    from_port   = number<br>    to_port     = number<br>    protocol    = string<br>  }))</pre> | <pre>[<br>  {<br>    "cidr_blocks": [],<br>    "description": null,<br>    "from_port": 0,<br>    "protocol": "-1",<br>    "to_port": 0<br>  }<br>]</pre> | no |
 | <a name="input_sg_ingress_variables"></a> [sg\_ingress\_variables](#input\_sg\_ingress\_variables) | List of ingress rules for the security group | <pre>list(object({<br>    cidr_blocks = optional(list(string))<br>    description = optional(string)<br>    from_port   = number<br>    to_port     = number<br>    protocol    = string<br>  }))</pre> | <pre>[<br>  {<br>    "cidr_blocks": [],<br>    "description": null,<br>    "from_port": 0,<br>    "protocol": "-1",<br>    "to_port": 0<br>  }<br>]</pre> | no |
