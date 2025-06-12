@@ -13,13 +13,29 @@ This module creates VPC endpoints (both interface and gateway types).
 |------|---------|
 | aws  | >= 5.30 |
 
-## Modules
-| Name | Source | Version |
-|------|--------|---------|
-| name_gateway_ep | google.com/naming-tag.git | feature/US106973 |
-| name_interface_ep | google.com/naming-tag.git | feature/US106973 |
-| vpc_gateway_endpoint | google.com/aws-gateway-vpc-endpoint.git | tag-name-change |
-| vpc_interface_endpoint | google.com/aws-interface-vpc-endpoint.git | tag-name-change |
+
+# Usage
+
+```hcl
+
+module "vpc_endpoints" {
+  for_each = var.vpc_endpoints
+
+  source              = "../"
+  vpc_id              = var.vpc_id
+  service_name        = each.value.service_name
+  vpc_endpoint_type   = each.value.vpc_endpoint_type
+  subnet_ids          = each.value.subnet_ids
+  security_group_ids  = each.value.security_group_ids
+  route_table_ids     = each.value.route_table_ids
+  auto_accept         = each.value.auto_accept
+  private_dns_enabled = each.value.private_dns_enabled
+  name                = each.value.name
+  tags                = var.common_tags
+}
+
+```
+
 
 ## Inputs
 | Name | Description | Type | Default | Required |
