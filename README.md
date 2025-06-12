@@ -11,7 +11,7 @@ This module creates VPC endpoints (both interface and gateway types).
 ## Providers
 | Name | Version |
 |------|---------|
-| aws  | >= 5.30 |
+|Terraform |  >= 1.12.1|
 
 
 # Usage
