@@ -1,7 +1,7 @@
 module "vpc_endpoints" {
   for_each = var.vpc_endpoints
 
-  source              = "./Module"
+  source              = "../"
   vpc_id              = var.vpc_id
   service_name        = each.value.service_name
   vpc_endpoint_type   = each.value.vpc_endpoint_type
