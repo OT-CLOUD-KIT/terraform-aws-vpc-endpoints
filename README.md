@@ -4,7 +4,7 @@
 This module creates VPC endpoints (both interface and gateway types).
 
 ## Architecture
-![image](https://github.com/user-attachments/assets/4ade5f65-acaa-409e-9495-343e935222f1)
+![ENDPOINT drawio](https://github.com/user-attachments/assets/aaf9361e-cb53-475f-a44b-b2c8086aa1ab)
 
 
 
@@ -12,6 +12,7 @@ This module creates VPC endpoints (both interface and gateway types).
 | Name | Version |
 |------|---------|
 |Terraform |  >= 1.12.1|
+terra
 
 
 # Usage
@@ -35,7 +36,8 @@ module "vpc_endpoints" {
 }
 
 ```
-
+> **Note:**  
+> The above example demonstrates how to use the module. All variables, resources, and outputs used here are already defined within this module.
 
 ## Inputs
 | Name | Description | Type | Default | Required |
@@ -62,4 +64,9 @@ module "vpc_endpoints" {
 - Ensure VPC, Subnets, and Route Tables are created beforehand.
 - Use appropriate naming conventions to match organizational standards.
 
-<!-- END_TF_DOCS -->
+---
+
+## ContributorS
+
+- Piyush Upadhyay
+- Nikita Joshi
