@@ -3,9 +3,15 @@
 
 This module creates VPC endpoints (both interface and gateway types).
 
+## Dependencies
+Please make sure that the following AWS resources are created before executing this module.
+- VPC
+- Subnet
+- RouteTables
+  
 ## Architecture
-![ENDPOINT drawio](https://github.com/user-attachments/assets/aaf9361e-cb53-475f-a44b-b2c8086aa1ab)
 
+![new_endpoint](https://github.com/user-attachments/assets/44be96a6-f21f-4fc6-9f5d-481a6a0e7099)<?xml version="1.0" encoding="UTF-8"?>
 
 
 ## Providers
