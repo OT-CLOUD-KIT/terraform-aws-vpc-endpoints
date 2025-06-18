@@ -66,7 +66,7 @@ module "vpc_endpoints" {
 
 ---
 
-## ContributorS
+## Contributors
 
 - Piyush Upadhyay
 - Nikita Joshi
