@@ -1,13 +1,16 @@
 
-# Terraform module to create VPC Endpoints
+## Terraform AWS VPC Endpoint
 
-This module creates VPC endpoints (both interface and gateway types).
+This Terraform module simplifies the creation and management of VPC Endpoints, supporting both Interface and Gateway types. It allows you to securely connect your VPC to supported AWS services without requiring an internet gateway, NAT device, or VPN connection.
 
-## Dependencies
-Please make sure that the following AWS resources are created before executing this module.
-- VPC
-- Subnet
-- RouteTables
+## Prerequisites
+Before using this module, ensure that the following resources are already provisioned:
+
+- A VPC
+
+- At least one Subnet (required for Interface endpoints)
+
+- One or more Route Tables (required for Gateway endpoints)
   
 ## Architecture
 
@@ -15,10 +18,11 @@ Please make sure that the following AWS resources are created before executing t
 
 
 ## Providers
-| Name | Version |
-|------|---------|
-|Terraform |  >= 1.12.1|
-|AWS| 5.82.2|
+
+| Name                                              | Version  |
+|---------------------------------------------------|----------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.82.2   |
+| <a name="terraform_module"></a> [Terraform](Terraform\module) | >= 1.12.1|
 
 
 # Usage
@@ -42,29 +46,46 @@ module "vpc_endpoints" {
 }
 
 ```
+
 > **Note:**  
 > The above example demonstrates how to use the module. All variables, resources, and outputs used here are already defined within this module.
 
+> **Related Module:**  
+> If you're looking for a production-ready VPC setup with best practices (CIDR structure, subnets, route tables, flow logs, tagging, etc.), check out our  
+> [Terraform AWS Network Skeleton](https://github.com/OT-CLOUD-KIT/terraform-aws-network-skeleton)
+
+---
+## Resources
+
+| Name | Type |
+|------|------|
+| [aws_vpc_endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
+
 ## Inputs
+
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| vpc_interface_ep_list | List of interface endpoints | list(object) | [] | no |
-| vpc_interface_ep_subnet_ids | Subnet IDs for interface EPs | list(string) | [] | no |
-| vpc_interface_ep_tags | Tags for interface EPs | map(string) | {} | no |
-| vpc_gateway_ep_list | List of gateway endpoints | list(object) | [] | no |
-| vpc_gateway_ep_route_table_ids | Route Table IDs | list(string) | [] | no |
-| vpc_gateway_ep_tags | Tags for gateway EPs | map(string) | {} | no |
+| <a name="input_vpc_id"></a> [`vpc_id`](#input_vpc_id) | The ID of the VPC in which to create the endpoint(s) | `string` | n/a | yes|
+| <a name="input_common_tags"></a> [`common_tags`](#input_common_tags) | Common tags applied to all resources | `map(string)` | `{}` | No |
+| <a name="input_vpc_endpoints"></a> [`vpc_endpoints`](#input_vpc_endpoints) | Map of endpoint definitions with full configuration per endpoint | `map(object)` | `{}` | yes |
+| <a name="attr_service_name"></a> [`service_name`](#attr_service_name) | AWS service name (e.g., `com.amazonaws.us-east-1.s3`) | `string` | yes|yes|
+| <a name="attr_vpc_endpoint_type"></a> [`vpc_endpoint_type`](#attr_vpc_endpoint_type) | Type of endpoint (`Interface` or `Gateway`) | `string` | yes|yes|
+| <a name="attr_subnet_ids"></a> [`subnet_ids`](#attr_subnet_ids) | Subnet IDs (used for Interface endpoints) | `list(string)` | No |yes|
+| <a name="attr_security_group_ids"></a> [`security_group_ids`](#attr_security_group_ids) | Security Group IDs (used for Interface endpoints) | `list(string)` | No |yes|
+| <a name="attr_route_table_ids"></a> [`route_table_ids`](#attr_route_table_ids) | Route Table IDs (used for Gateway endpoints) | `list(string)` | No |yes|
+| <a name="attr_auto_accept"></a> [`auto_accept`](#attr_auto_accept) | Whether the endpoint connection should be auto-accepted | `bool` | No|yes|
+| <a name="attr_private_dns_enabled"></a> [`private_dns_enabled`](#attr_private_dns_enabled) | Enable private DNS for the service (Interface only) | `bool` | No |No|
+
+---
 
 ## Outputs
+
 | Name | Description |
 |------|-------------|
-| vpc_endpoint | VPC endpoint details |
-| vpc_endpoint_id | Map of VPC endpoint IDs |
-| vpc_endpoint_service_name | Map of VPC endpoint service names |
-| vpc_gateway_ep_arns | ARNs of gateway endpoints |
-| vpc_gateway_ep_ids | IDs of gateway endpoints |
-| vpc_interface_ep_arns | ARNs of interface endpoints |
-| vpc_interface_ep_ids | IDs of interface endpoints |
+| <a name="vpc_endpoint_ids"></a> [`vpc_endpoint_ids`](#vpc_endpoint_ids) | Map of VPC Endpoint IDs for all defined services |
+| <a name="vpc_endpoint_types"></a> [`vpc_endpoint_types`](#vpc_endpoint_types) | Map of VPC Endpoint Types (`Interface` or `Gateway`) |
+
+
 
 ## Considerations
 - Ensure VPC, Subnets, and Route Tables are created beforehand.
@@ -74,5 +95,6 @@ module "vpc_endpoints" {
 
 ## Contributors
 
-- Piyush Upadhyay
-- Nikita Joshi
+- [Piyush Upadhyay](https://github.com/piiiyuushh)
+- [Nikita Joshi](https://github.com/jnikita19)
+
