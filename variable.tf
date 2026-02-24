@@ -1,45 +1,28 @@
+variable "region" {
+    type = string
+  
+}
 variable "vpc_id" {
-  type = string
+  description = "VPC ID where endpoints will be created"
+  type        = string
 }
 
-variable "service_name" {
-  type = string
+variable "endpoints" {
+  description = "Map of VPC endpoints configuration"
+  type = map(object({
+    service_name       = string
+    type               = string 
+    route_table_ids    = optional(list(string))
+    subnet_ids         = optional(list(string))
+    security_group_ids = optional(list(string))
+    private_dns        = optional(bool)
+    tags               = optional(map(string))
+  }))
 }
 
-variable "vpc_endpoint_type" {
-  type = string
+variable "common_tags" {
+  description = "Common tags applied to all endpoints"
+  type        = map(string)
+  default     = {}
 }
 
-variable "subnet_ids" {
-  type    = list(string)
-  default = []
-}
-
-variable "security_group_ids" {
-  type    = list(string)
-  default = []
-}
-
-variable "route_table_ids" {
-  type    = list(string)
-  default = []
-}
-
-variable "auto_accept" {
-  type    = bool
-  default = false
-}
-
-variable "private_dns_enabled" {
-  type    = bool
-  default = false
-}
-
-variable "name" {
-  type = string
-}
-
-variable "tags" {
-  type    = map(string)
-  default = {}
-}

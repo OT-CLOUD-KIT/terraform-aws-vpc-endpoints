@@ -1,7 +1,13 @@
-output "vpc_endpoint_id" {
-  value = aws_vpc_endpoint.this.id
+output "endpoint_ids" {
+  value = {
+    for k, v in aws_vpc_endpoint.this :
+    k => v.id
+  }
 }
 
-output "vpc_endpoint_type" {
-  value = aws_vpc_endpoint.this.vpc_endpoint_type
+output "endpoint_arns" {
+  value = {
+    for k, v in aws_vpc_endpoint.this :
+    k => v.arn
+  }
 }

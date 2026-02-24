@@ -1,18 +1,20 @@
 resource "aws_vpc_endpoint" "this" {
-  vpc_id              = var.vpc_id
-  service_name        = var.service_name
-  vpc_endpoint_type   = var.vpc_endpoint_type
-  auto_accept         = var.auto_accept
-  private_dns_enabled = var.private_dns_enabled
+  for_each = var.endpoints
 
-  # Only for Interface
-  subnet_ids         = var.vpc_endpoint_type == "Interface" ? var.subnet_ids : null
-  security_group_ids = var.vpc_endpoint_type == "Interface" ? var.security_group_ids : null
+  vpc_id            = var.vpc_id
+  service_name      = each.value.service_name
+  vpc_endpoint_type = each.value.type
 
-  # Only for Gateway
-  route_table_ids    = var.vpc_endpoint_type == "Gateway" ? var.route_table_ids : null
+  route_table_ids     = each.value.type == "Gateway" ? try(each.value.route_table_ids, null) : null
+  subnet_ids          = each.value.type == "Interface" ? try(each.value.subnet_ids, null) : null
+  security_group_ids  = each.value.type == "Interface" ? try(each.value.security_group_ids, null) : null
+  private_dns_enabled = each.value.type == "Interface" ? try(each.value.private_dns, true) : null
 
-  tags = merge(var.tags, {
-    Name = var.name
-  })
+  tags = merge(
+    var.common_tags,
+    try(each.value.tags, {}),
+    {
+      Name = each.key
+    }
+  )
 }
